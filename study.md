@@ -98,6 +98,28 @@ virtual destructor
 
 7/12
 
+Conditional and Action breakpoints
+
+使用智能指针管理内存 
+
+预编译头文件
+
+动态转换
+
+Benchmarking
+
+7/17
+
+贪心复习前两周内容
+
+7/19
+
+kafka 
+
+tcc
+
+
+
 # 书
 
 高性能mysql 第三版

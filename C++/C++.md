@@ -596,3 +596,361 @@ int main() {
 
 # Conditional and Action breakpoints
 
+# Benchmarking
+
+```c++
+#include<iostream>
+#include<memory>
+#include<chrono>
+
+class Timer
+{
+public:
+	Timer() {
+		m_StartTimePoint = std::chrono::high_resolution_clock::now();
+	}
+
+	~Timer() {
+		Stop();
+	}
+
+	void Stop(){
+		auto endTimePoint = std::chrono::high_resolution_clock::now();
+		auto start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimePoint).time_since_epoch().count();
+		auto end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimePoint).time_since_epoch().count();
+		
+		auto duration = end - start;
+		double ms = duration * 0.001;
+
+		std::cout << duration << "us(" << ms << ")ms\n";
+	}
+private:
+	std::chrono::time_point<std::chrono::high_resolution_clock>m_StartTimePoint;
+};
+
+int main() {
+		int value = 0;
+		{
+			Timer timer;
+			for (int i = 0; i < 1000000; i++)
+				value += 2;
+		}
+		std::cout << value << std::endl;
+
+	__debugbreak();
+}
+```
+
+```c++
+#include<iostream>
+#include<memory>
+#include<chrono>
+#include<array>
+class Timer
+{
+public:
+	Timer() {
+		m_StartTimePoint = std::chrono::high_resolution_clock::now();
+	}
+
+	~Timer() {
+		Stop();
+	}
+
+	void Stop(){
+		auto endTimePoint = std::chrono::high_resolution_clock::now();
+		auto start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimePoint).time_since_epoch().count();
+		auto end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimePoint).time_since_epoch().count();
+		
+		auto duration = end - start;
+		double ms = duration * 0.001;
+
+		std::cout << duration << "us(" << ms << ")ms\n";
+	}
+private:
+	std::chrono::time_point<std::chrono::high_resolution_clock>m_StartTimePoint;
+};
+
+int main() {
+	struct Vector2 {
+		float x, y;
+	};
+	std::cout << "make shared\n";
+	{
+		std::array<std::shared_ptr<Vector2>, 10000>sharedPtrs;
+		Timer timer;
+		for (int i = 0; i< sharedPtrs.size(); i++) {
+			sharedPtrs[i] = std::make_shared<Vector2>();
+		}
+	}
+	std::cout << "new shared\n";
+	{
+		std::array<std::shared_ptr<Vector2>, 10000>sharedPtrs;
+		Timer timer;
+		for (int i = 0; i < sharedPtrs.size(); i++) {
+			sharedPtrs[i] = std::shared_ptr<Vector2>(new Vector2());
+		}
+	}
+	std::cout << "make unique\n";
+	{
+		std::array<std::unique_ptr<Vector2>, 10000>sharedPtrs;
+		Timer timer;
+		for (int i = 0; i < sharedPtrs.size(); i++) {
+			sharedPtrs[i] = std::make_unique<Vector2>();
+		}
+	}
+}
+```
+
+# 结构化绑定
+
+```c++
+#include<iostream>
+#include<tuple>
+#include<string>
+
+struct Person {
+	std::string Name;
+	int age;
+};
+
+std::tuple<std::string, int> CreatePerson() {
+	return { "wang",21 };
+}
+
+
+//无结构化绑定需使用get tie函数
+int main() {
+    //get
+	auto person = CreatePerson();
+	std::string& name = std::get<0>(person);
+	int age= std::get<1>(person);
+	//tie
+	std::string name;
+	int age;
+	std::tie(name, age) = CreatePerson();
+}
+```
+
+```c++
+#include<iostream>
+#include<tuple>
+#include<string>
+
+//c++17 提供结构化绑定 只需一行
+std::tuple<std::string, int> CreatePerson() {
+	return { "wang",21 };
+}
+
+
+
+int main() {
+	auto [name, age] = CreatePerson();
+	std::cout << name << std::endl;
+}
+```
+
+# struct和class区别
+
+1，可见性
+
+struct 不添加权限修饰符 默认为pubic
+
+class   不添加权限修饰符 默认为private
+
+2.struct 更多是关于变量，而class 关于功能
+
+3.继承的时候用class
+
+# optional
+
+```c++
+#include<iostream>
+#include<fstream>
+#include<optional>
+
+std::optional < std::string>ReadFileAsString(const std::string& filepath) {
+	std::ifstream stream(filepath);
+	if (stream) {
+		std::string result;
+		//read File
+		stream.close();
+		return result;
+	}
+	return {};
+}
+
+
+
+int main() {
+	std::optional < std::string>data = ReadFileAsString("data.txt");
+	
+	std::string value = data.value_or("Not present");
+	std::cout << value << std::endl;
+	if (data) {
+		std::cout << "read the file successfully\n";
+	}
+	else {
+		std::cout << "could not read the file \n";
+	}
+	std::cin.get(); 
+}
+```
+
+# variant
+
+有点类似于加强版的union，里面可以存放复合数据类型，且操作元素更为方便。
+可以用于表示多种类型的混合体，但同一时间只能用于代表一种类型的实例。  
+
+大小为 最大类型的大小+ 元数据大小
+
+```c++
+#include<iostream>
+#include<variant>
+#include<optional>
+#include <string>
+
+union ss {
+	std::string name;
+	double age;
+};
+
+int main() {
+	std::variant<std::string, int>data;
+	data = "wang";
+	std::cout << std::get<std::string>(data) << "\n";
+
+	data = 2.0;
+	
+	std::cout << std::get<int>(data) << "\n";
+	std::cout << "string:" << sizeof(std::string) << "\n";
+	std::cout << "int:" << sizeof(int) << "\n";
+	std::cout << "data:"<<sizeof(data) << "\n";
+	std::cout << "ss:" << sizeof(ss) << "\n";
+	std::cin.get();
+}
+```
+
+# Singleton
+
+```c++
+#include<iostream>
+
+class Random {
+public:
+	Random(const Random&) = delete;
+
+	static Random& Get() {
+		static Random instance;
+		return instance;
+	}
+
+	static float Float()
+	{
+		return Get().IFloat();
+	}
+private:
+	float IFloat() { return m_RandomGenerator; }
+	Random (){}
+	float m_RandomGenerator=0.55f;
+};
+
+int main() {
+	float number = Random::Float();
+	std::cout << number << std::endl;
+
+}
+```
+
+# small string optimization
+
+如果string 大小>=16bytes  将会调用new malloc 堆分配
+
+<16  不会堆分配
+
+```c++
+#include<iostream>
+
+void* operator new(size_t size) {
+	std::cout << "allocating " << size << "bytes\n";
+	return malloc(size);
+}
+
+int main() {
+	std::string name = "china lfaif sjds";
+	std::cin.get();
+}
+```
+
+# track memory allocation
+
+```c++
+#include<iostream>
+#include<memory>
+
+struct AllocationMetrics
+{
+	uint32_t TotalAllocated = 0;
+	uint32_t TotalFreed = 0;
+	uint32_t CurrentUsage() { return TotalAllocated - TotalFreed; }
+};
+
+static AllocationMetrics s_AllocationMetrics;
+
+void* operator new(size_t size) {
+	s_AllocationMetrics.TotalAllocated += size;
+	return malloc(size);
+}
+
+void operator delete(void* memory,size_t size) {
+	s_AllocationMetrics.TotalFreed += size;
+	free(memory);
+}
+
+
+struct Object {
+	int x, y, z;
+};
+
+static void PrintMemoryUsage() {
+	std::cout << "memory usage:" << s_AllocationMetrics.CurrentUsage() << "bytes\n";
+}
+
+int main() {
+	PrintMemoryUsage();
+	std::string name = "china";
+	PrintMemoryUsage();
+	{	
+		std::unique_ptr<Object>obj = std::make_unique<Object>(); 
+		PrintMemoryUsage();
+	}
+	PrintMemoryUsage();
+}
+```
+
+# lvalue rvalue
+
+```c++
+#include<iostream>
+
+void PrintName(const std::string& name) { //左值引用
+	std::cout <<"[lvalue]:" << name << std::endl;
+}
+
+void PrintName(const std::string&& name) {//右值引用
+	std::cout << "[rvalue]:" << name << std::endl;
+}
+
+int main() {
+	std::string firstname = "wang";
+	std::string lastname = "hongbo";
+	
+	std::string fullname = firstname + lastname;
+
+	PrintName(fullname);
+	PrintName(firstname + lastname);
+}
+
+
+```
+

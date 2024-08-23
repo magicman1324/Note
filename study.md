@@ -130,6 +130,22 @@ uint32_t https://blog.csdn.net/Mary19920410/article/details/71518130
 
 01背包初步
 
+8/21
+
+linux收发网络包
+
+http 状态码 
+
+http 长连接 和tcp 保活的区别
+
+强缓存和协商缓存
+
+8/22
+
+http 1.1 2 3 
+
+
+
 # 书
 
 高性能mysql 第三版

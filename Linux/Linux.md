@@ -492,3 +492,25 @@ mike:x:1000:1000:mike,,,:/home/mike:/bin/bash
 
 ```
 
+![](F:\Photos\snipaste\Linux\文件与文件夹权限.png)
+
+​	
+
+```
+
+    当为 d 则是目录
+    当为 - 则是文件；
+    若是 l 则表示为链接文档(link file)；
+    若是 b 则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；
+    若是 c 则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。
+
+```
+
+![](F:\Photos\snipaste\Linux\文件夹权限.png)
+
+#### chmod
+
+![](F:\Photos\snipaste\Linux\chmod.png)
+
+![](F:\Photos\snipaste\Linux\Snipaste_2024-09-06_00-35-51.png)
+

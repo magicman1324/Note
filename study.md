@@ -120,7 +120,7 @@ tcc
 
 7/23
 
-uint32_t https://blog.csdn.net/Mary19920410/article/details/71518130
+/uint32_t https://blog.csdn.net/Mary19920410/article/details/71518130
 
 移动语义
 
@@ -144,7 +144,11 @@ http 长连接 和tcp 保活的区别
 
 http 1.1 2 3 
 
+9/11
 
+学习了十大排序 前几种 自己遗忘的速度很快  需要不断巩固 
+
+抓紧调整自己的节奏 好好走向正轨
 
 # 书
 

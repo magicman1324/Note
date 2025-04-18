@@ -16,7 +16,7 @@ JVM是一个将Java**字节码**转换为机器语言的抽象机器。它还能
 
 编码-》编译成class文件（字节码文件）-》用jvm执行
 
-![](F:\Photos\snipaste\Java\Test.png)
+![](F:\Photos\snipaste\Java\Java 最早\Test.png)
 
 ### javac 与java
 
@@ -36,13 +36,29 @@ package com.microsoft.demo
 
 用来定位的 说明你的Main.java在哪里
 
-![](F:\Photos\snipaste\Java\package.png)
+![](F:\Photos\snipaste\Java\Java 最早\package.png)
+
+
+
+# javadoc
+
+![](F:\Photos\snipaste\Java\Java 最早\javadoc.png)
+
+```shell
+javadoc -encoding UTF-8 -docencoding UTF-8 -charset UTF-8 Main.java
+```
+
+参数含义：
+
+- `-encoding UTF-8`：告诉 javadoc 去按 UTF‑8 解读你的 `.java` 源文件。
+- `-docencoding UTF-8`：告诉它用 UTF‑8 编码输出生成的 HTML 文件。
+- `-charset UTF-8`：指定 HTML 中声明的字符集。
 
 # String
 
 # 自动类型转换
 
-![](F:\Photos\snipaste\Java\自动类型转换.png)
+![](F:\Photos\snipaste\Java\Java 最早\自动类型转换.png)
 
 # 方法的重载
 
@@ -158,7 +174,7 @@ public class ApplicationRun {
 //NullPointerException
 ```
 
-![](F:\Photos\snipaste\Java\空指针异常.png)
+![](F:\Photos\snipaste\Java\Java 最早\空指针异常.png)
 
 # OOP封装
 
@@ -184,23 +200,23 @@ setAge();setName();面向对象的思想
 
 alt insert 选中 toString  然后全选
 
-![](F:\Photos\snipaste\Java\toString 1.png)
+![](F:\Photos\snipaste\Java\Java 最早\toString 1.png)
 
 特殊的单独写-------方法的重写
 
-![](F:\Photos\snipaste\Java\toString 2.png)
+![](F:\Photos\snipaste\Java\Java 最早\toString 2.png)
 
 # 构造方法
 
 alt insert   constuctor 
 
-![](F:\Photos\snipaste\Java\构造方法.png)
+![](F:\Photos\snipaste\Java\Java 最早\构造方法.png)
 
 用来初始化对象（实例）
 
 
 
-![](F:\Photos\snipaste\Java\构造方法的重载.png)
+![](F:\Photos\snipaste\Java\Java 最早\构造方法的重载.png)
 
 **构造方法可以重载**
 
@@ -212,13 +228,13 @@ System.gc(); //手动回收
 
 # 静态变量与静态方法
 
-![](F:\Photos\snipaste\Java\静态变量.png)
+![](F:\Photos\snipaste\Java\Java 最早\静态变量.png)
 
 `static` 关键字的主要作用是使成员属于**类**而不是类的实例，并提供对这些成员的类级别访问。
 
 ## private static
 
-<img src="F:\Photos\snipaste\Java\private static.png"  />
+<img src="F:\Photos\snipaste\Java\Java 最早\private static.png"  />
 
 ```java
 private static String plot="xibei";
@@ -252,7 +268,7 @@ public class Dogs extends Animal{
 
 extends  子类继承父类
 
-![](F:\Photos\snipaste\Java\继承.png)
+![](F:\Photos\snipaste\Java\Java 最早\继承.png)
 
 ## 多层继承
 
@@ -268,7 +284,7 @@ extends  子类继承父类
 
 alt insert   @Override
 
-![](F:\Photos\snipaste\Java\方法的重写.png)
+![](F:\Photos\snipaste\Java\Java 最早\方法的重写.png)
 
 子类自己拥有的特性，不是来自父类的，他从父亲那里革新
 
@@ -310,7 +326,7 @@ public static final String name = "wang"
 public abstract class Animal {...};
 ```
 
-![](F:\Photos\snipaste\Java\抽象类.png)
+![](F:\Photos\snipaste\Java\Java 最早\抽象类.png)
 
 ## 抽象类与抽象方法的使用
 

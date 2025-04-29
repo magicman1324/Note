@@ -26,7 +26,7 @@ OpenSUSE-->>OpenSUSE Tumbleweed,OpenSUSE Leap,OpenSUSE MicroOS
 
 ### 4.Application 应用
 
-![](F:\Photos\snipaste\Linux\组成.png)
+![](..\imgs\组成.png)
 
 ## Linux 内核：操作系统
 
@@ -47,7 +47,7 @@ OpenSUSE-->>OpenSUSE Tumbleweed,OpenSUSE Leap,OpenSUSE MicroOS
 
 ubuntu20.04支持的文件系统如上
 
-![](F:\Photos\snipaste\Linux\文件类型.png)
+![](F:\Study\notes\Linux\imgs\文件类型.png)
 
 ## GNU组织
 
@@ -122,7 +122,7 @@ ls -l fhs-2.3 copy?.pdf
 ls -l *.pdf
 ```
 
-![](F:\Photos\snipaste\Linux\文件扩展匹配符.png)
+![](F:\Study\notes\Linux\imgs\文件扩展匹配符.png)
 
 ### 元字符通配符 [] !
 
@@ -130,7 +130,7 @@ ls -l *.pdf
 ls -l f[a-x]ck.txt	
 ```
 
-![](F:\Photos\snipaste\Linux\元字符通配符.png)
+![](F:\Study\notes\Linux\imgs\元字符通配符.png)
 
 ### Linux根目录
 

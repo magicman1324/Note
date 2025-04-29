@@ -26,7 +26,7 @@ OpenSUSE-->>OpenSUSE Tumbleweed,OpenSUSE Leap,OpenSUSE MicroOS
 
 ### 4.Application 应用
 
-![](../imgs/组成.png)
+![](./imgs/组成.png)
 
 ## Linux 内核：操作系统
 
@@ -47,7 +47,7 @@ OpenSUSE-->>OpenSUSE Tumbleweed,OpenSUSE Leap,OpenSUSE MicroOS
 
 ubuntu20.04支持的文件系统如上
 
-![](F:\Study\notes\Linux\imgs\文件类型.png)
+![](./imgs/文件类型.png)
 
 ## GNU组织
 
@@ -122,7 +122,7 @@ ls -l fhs-2.3 copy?.pdf
 ls -l *.pdf
 ```
 
-![](F:\Study\notes\Linux\imgs\文件扩展匹配符.png)
+![](./imgs/文件扩展匹配符.png)
 
 ### 元字符通配符 [] !
 
@@ -130,7 +130,7 @@ ls -l *.pdf
 ls -l f[a-x]ck.txt	
 ```
 
-![](F:\Study\notes\Linux\imgs\元字符通配符.png)
+![](./imgs/元字符通配符.png)
 
 ### Linux根目录
 
@@ -279,7 +279,7 @@ ln -s 源文件 链接文件 #创建软链接
 ln 源文件 链接文件    #创建硬链接
 ```
 
-![](F:\Photos\snipaste\Linux\软链接与硬链接.png)
+![](./imgs/软链接与硬链接.png)
 
 第5列的0 6 0 表明软链接是与原文件单独分开的，会占用额外字节
 
@@ -342,7 +342,7 @@ kill #杀死进程
 
 Windows插入u盘 会产生新的虚拟盘 
 
-![](F:\Photos\snipaste\Linux\挂载.png)
+![](./imgs/挂载.png)
 
 ```shell
 sudo fdisk -l
@@ -350,7 +350,7 @@ sudo mount /dev/sdb4 /mnt #将u盘映射到/mnt
 sudo umount /media/mike/USB  #结束挂载
 ```
 
-![](F:\Photos\snipaste\Linux\挂载linux.png)
+![](./imgs/挂载linux.png)
 
 查看磁盘信息
 
@@ -398,11 +398,11 @@ tar -zxvf /opt/soft/test/log.tar.gz #将tar包解压
 
 ### 父子shell
 
-![](F:\Photos\snipaste\Linux\父子shell.png)
+![](./imgs/父子shell.png)
 
 ### 分号与括号在shell作用
 
-![](F:\Photos\snipaste\Linux\分号在shell作用.png)
+![](./imgs/分号在shell作用.png)
 
 分号 依次执行命令
 
@@ -420,19 +420,19 @@ sleep 300& #输出pid
 jobs -l
 ```
 
-![](F:\Photos\snipaste\Linux\sleep与jobs.png)
+![](./imgs/sleep与jobs.png)
 
 ### 外部命令和内建命令
 
-![](F:\Photos\snipaste\Linux\外部命令.png)
+![](./imgs/外部命令.png)
 
-![外部命令与内建命令](F:\Photos\snipaste\Linux\外部命令与内建命令.png)
+![外部命令与内建命令](./imgs/外部命令与内建命令.png)
 
-![](F:\Photos\snipaste\Linux\外部命令查看.png)
+![](./imgs/外部命令查看.png)
 
 ### history命令
 
-![](F:\Photos\snipaste\Linux\history命令.png)
+![](./imgs/history命令.png)
 
 ```shell
 !行号 #执行所在行的历史命令
@@ -492,7 +492,7 @@ mike:x:1000:1000:mike,,,:/home/mike:/bin/bash
 
 ```
 
-![](F:\Photos\snipaste\Linux\文件与文件夹权限.png)
+![](./imgs/文件与文件夹权限.png)
 
 ​	
 
@@ -506,11 +506,11 @@ mike:x:1000:1000:mike,,,:/home/mike:/bin/bash
 
 ```
 
-![](F:\Photos\snipaste\Linux\文件夹权限.png)
+![](./imgs/文件夹权限.png)
 
 #### chmod
 
-![](F:\Photos\snipaste\Linux\chmod.png)
+![](./imgs/chmod.png)
 
-![](F:\Photos\snipaste\Linux\Snipaste_2024-09-06_00-35-51.png)
+![](./imgs/authority.png)
 

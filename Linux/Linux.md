@@ -26,7 +26,7 @@ OpenSUSE-->>OpenSUSE Tumbleweed,OpenSUSE Leap,OpenSUSE MicroOS
 
 ### 4.Application 应用
 
-![](../imgs/组成.png)
+![](./imgs/组成.png)
 
 ## Linux 内核：操作系统
 

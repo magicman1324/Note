@@ -148,3 +148,69 @@ int main() {
 }
 ```
 
+# 企业级整型规范示例
+
+```c
+#include<stdio.h>
+#include<stdint.h>
+
+int main() {
+	int8_t myInt8 = 127;
+	uint8_t myUint8 = 255;
+
+	int16_t myInt16 = 32767;
+	uint16_t myUint16 = 65535;
+
+	int32_t myInt32 = 2147483647;
+	uint32_t myUint32 = 4294967295U;
+	
+	int64_t myInt64 = 9223372036854775807LL;
+	uint64_t myUint64 = 18446744073709551615ULL;
+
+	printf("size of int8_t=%zu\n", sizeof(myInt8));
+	printf("size of uint8_t=%zu\n", sizeof(myUint8));
+
+	printf("size of int16_t=%zu\n", sizeof(myInt16));
+	printf("size of uint16_t=%zu\n", sizeof(myUint16));
+
+	printf("size of int32_t=%zu\n", sizeof(myInt32));
+	printf("size of uint32_t=%zu\n", sizeof(myUint32));
+
+	printf("size of int64_t=%zu\n", sizeof(myInt64));
+	printf("size of uint64_t=%zu\n", sizeof(myUint64));
+}
+```
+
+# 隐式转换和显式转换
+
+```c
+#include<stdio.h>
+#include<stdint.h>
+
+int main() {
+
+	//type conversation 类型转换
+	//强制转换都必须 显式
+	// 
+	//无符号到有符号的转换
+	uint16_t num1 = 11111;
+	int16_t num2 = (int16_t)num1;
+	printf("num1=%u\n", num1);
+	printf("num2=%d\n", num2);
+
+	//大范围到小范围
+	int32_t num3 = 1234;
+	int16_t num4 = (int16_t)num3;
+	printf("num3=%d\n", num3);
+	printf("num4=%d\n", num4);
+
+	//小范围到大范围(扩展负数)
+	int32_t num5 = 232133;
+	int64_t num6 = (int64_t)num5;
+	printf("num5=%d\n", num5);
+	printf("num6=%d\n", num6);
+
+	
+}
+```
+

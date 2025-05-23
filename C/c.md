@@ -214,3 +214,145 @@ int main() {
 }
 ```
 
+# inttypes.h
+
+[^inttypes.h]: 固定宽度整型类型格式化宏输出
+
+
+
+```c
+#include<stdio.h>
+#include<stdint.h>
+#include<inttypes.h>
+
+int main() {
+
+	int8_t myInt8 = INT8_MAX;
+	uint16_t myUInt16 = UINT16_MAX;
+	uint32_t myUInt32 = UINT32_MAX;
+	uint64_t myUInt64 = UINT64_MAX;
+
+	printf("myInt8=%"PRId8"\n", myInt8);
+	printf("myUInt16=%"PRIu16"\n", myUInt16);
+	printf("myUInt32=%"PRIu32"\n", myUInt32);
+	printf("myUInt64=%"PRIu64"\n", myUInt64);
+}
+```
+
+# int_leastN_t
+
+```c
+#include<stdio.h>
+#include<stdint.h>
+#include<inttypes.h>
+
+int main() {
+
+	//int_leastN_t number;
+	//至少有N位，可能更多，适用于需要保证最小存储容量的可移植代码。
+	//int_fastN_t 特效 8bit 16bit
+	//至少有N位，但是选择速度最快的类型，适用于需要性能敏感的代码
+
+	//标准整数类型  固定宽度整数类型
+	int_least32_t playerScore = 6000;
+
+	//初始化像素块
+	int_least32_t pixelValue = 1000;
+
+	return 0;
+}
+```
+
+# IEEE754 指数偏移存储浮点数
+
+0 ----------------------------------127--------------------------------------255
+
+向127的左偏移 指数上的幂位负                 幂为正
+
+ 
+
+```c
+#include<stdio.h>
+
+int main() {
+
+	float num = 12.34f;
+
+	//%f
+	printf("using %%f: %f\n", num);
+
+	//%e %E 科学计数法
+	printf("using %%e: %e\n", num);
+	printf("using %%E: %E\n", num);
+	
+	//%a %A 16进制浮点数 p计数法
+	printf("using %%a: %a\n", num);
+	printf("using %%A: %A\n", num);
+}
+```
+
+# overflow,underflow
+
+```c
+#include<stdio.h>
+#include<float.h>
+int main() {
+	float max_float = FLT_MAX;
+	
+	float overflow = max_float * 1000.0f;
+
+	printf("max_float:%e\n", max_float);
+	printf("overfloat:%e\n", overflow);
+
+	float min_float = FLT_MIN;
+
+	float underflow = min_float / 1000.0f;
+	printf("min_float:%e\n", min_float);
+	printf("underflow:%e\n", underflow);
+
+
+}
+```
+
+# 银行家舍入
+
+银行家舍入是一种“中点舍入”策略，当数值的小数部分正好等于0.5时，会将该值舍入到最接近的偶数
+
+```c
+#include<stdio.h>
+
+int main() {
+
+	float num1 = 3.15f;
+	float num2 = 3.25f;
+
+	printf("1->num1=%.1f\n", num1);
+	printf("2->num2=%.1f\n", num2);
+
+}
+
+```
+
+# float double 有效精度对比
+
+```c
+#include<stdio.h>
+#include<float.h>
+
+int main() {
+
+	float float_num = 1.0 / 3.0;
+	double double_num = 1.0 / 3.0;
+
+	printf("float precision:%.20f\n", float_num);
+	printf("double precision:%.20lf\n", double_num);
+
+	printf("float max precision:%d\n", FLT_DIG);
+	printf("double max precision:%d\n", DBL_DIG);
+}
+```
+
+![](F:\Study\notes\C\C_photos\float，double有效精度对比.png)
+
+实际分别为 7 16 根据IEEE754标准
+

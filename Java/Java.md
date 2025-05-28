@@ -1,3 +1,5 @@
+
+
 # Java的运行
 
 jdk   Java Development Kit
@@ -504,3 +506,289 @@ public class Application {
 ```
 
 上面的代码中，我在 `eat()` 方法后面直接调用了 `run()` 方法。这样就能同时调用 `eat` 和 `run` 方法。请注意，每次创建新的匿名内部类实例都会导致新的对象创建，因此 `eat()` 和 `run()` 方法的调用是独立的。如果希望在同一个对象上调用这两个方法，可能需要将匿名内部类的实例保存到一个变量中。
+
+
+
+
+
+# 左移
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        int i=-1;
+        System.out.println("初始数据"+i);
+        System.out.println("初始数据对应的二进制字符串"+Integer.toBinaryString(i));
+        i<<=42;  //== i<<=10   等同于 左移十位
+        System.out.println("左移42位后的数据"+i);
+        System.out.println("左移42位后对应的二进制字符"+Integer.toBinaryString(i));
+    }
+}
+```
+
+# 异常
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        try{
+            test(1,0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+}
+    public static int test(int a,int b) throws Exception{
+        if(b==0)throw new Exception("by zero precision");
+        return a/b;
+    }
+}
+```
+
+# 数学类
+
+```java
+import java.sql.SQLOutput;
+import java.util.Random;
+
+public class Main{
+    public static void main(String[] args) {
+        System.out.println(Math.pow(5,3));
+
+        System.out.println(Math.abs(-1));
+        System.out.println(Math.max(91, 31));
+        System.out.println(Math.min(2, 3));
+        System.out.println(Math.sqrt(4));
+        System.out.println(Math.sin(Math.PI / 2));
+        System.out.println(Math.cos(Math.PI));
+        System.out.println(Math.tan(Math.PI / 4));
+
+        System.out.println(Math.asin(1));
+        System.out.println(Math.acos(1));
+        System.out.println(Math.atan(0));
+
+        System.out.println(Math.sin(Math.PI));
+        Math.log(Math.E);//e为底的对数函数ln
+        Math.log10(100);
+
+        double a=Math.log(4)/Math.log(2);
+        System.out.println(a);
+
+        System.out.println(Math.ceil(2.4)); //向上取整
+        System.out.println(Math.floor(4.6)); //向下取整
+
+        Random ran =new Random();
+        for(int i=0;i<30;i++){
+            System.out.print(ran.nextInt(100)+" ");  //nextInt 0-100之间的随机数
+        }
+    }
+
+}
+```
+
+# 数组类
+
+```java
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.Random;
+
+public class Main{
+    public static void main(String[] args) {
+       int []a =new int[]{1,3,4,2,4,5,2,3,4,2,1};
+       System.out.println(Arrays.toString(a));
+       Arrays.sort(a);
+       System.out.println(Arrays.toString(a));
+
+       int []arr=new int[10];
+       Arrays.fill(arr,66);
+        System.out.println(Arrays.toString(arr));
+
+        int []p=new int[]{1,2,3,4,5};
+        int []target =Arrays.copyOf(p,5);
+        System.out.println(Arrays.toString(target));
+        System.out.println(p==target);
+
+        int []target2 =Arrays.copyOfRange(p,3,5);
+        System.out.println(Arrays.toString(target2));
+        System.out.println(p==target2);
+
+        int[] g=new int[]{2,3,4,5,6};
+        int[] gt=new int[5];
+        System.arraycopy(g,0,gt,0,5);
+        System.out.println(Arrays.toString(gt));
+
+        System.out.println(Arrays.binarySearch(g,5));
+
+        int [][]d=new int[][]{{2,22,4,2},{24,4,1,5}};
+        System.out.println(Arrays.deepToString(d));
+        int [][]e=new int[][]{{2,22,4,2},{24,4,1,5}};
+        System.out.println(Arrays.deepEquals(d,e));
+    }
+
+}
+```
+
+# 数据结构
+
+```java
+/**
+ 线性表抽象类
+ @param <E> 存储的数据类型
+
+ **/
+
+public abstract class AbstractList<E> {
+    /**
+     * 获取表的长度
+     * @return 长度
+     */
+    public abstract int size();
+
+    /**
+     * 指定位置添加元素
+     * @param e  元素
+     * @param index  索引，从0开始
+     */
+    public abstract void add(E e,int index);
+
+    /**
+     * 指定位置移除
+     * @param index 位置，索引
+     */
+    public abstract void remove(int index);
+
+    /**
+     * 获取指定位置的元素
+     * @param index  索引，位置
+     * @return 元素
+     */
+    public abstract  E get(int index);
+}
+
+```
+
+```java
+/**
+ * 队列抽象类
+ * @param <E>
+ */
+public abstract class AbstractQueue <E>{
+    /**
+     * 进队操作
+     * @param e
+     */
+    public abstract void offer(E e);
+
+    /**
+     * 出队操作
+     * @return 元素
+     */
+    public  abstract E poll();
+}
+
+```
+
+```java
+/**
+ * 栈抽象类
+ * @param <E>
+ */
+public abstract class AbstractStack <E> {
+    /**
+     * 在尾部添加 元素
+     * * @param e  元素
+     */
+    public abstract void push(E e);
+
+    /**
+     * 尾部删除元素
+     * @return 元素
+     */
+    public  abstract  E pop();
+
+}	
+
+```
+
+# 顺序表
+
+Arraylist.java
+
+```java
+package com.test.collection;
+
+public class ArrayList<E> {
+    private int size = 0;
+    private int capacity = 10;
+    private  Object[] array=new Object[capacity];
+
+    /***
+     *  顺序表的插入操作
+     * @param element 插入元素
+     * @param index   插入位置
+     */
+    public void add(E element,int index){
+        if(index<0||index>size){
+            throw new IndexOutOfBoundsException("index不合法，index须在0~"+size);
+        }
+        if(size>=capacity){
+            int newCapacity=capacity+(capacity>>1);
+            Object[] newArray = new Object[newCapacity];
+            System.arraycopy(array,0,newArray,0,size);
+            array=newArray;
+            capacity=newCapacity;
+        }
+        for(int i=size;i>index;i--){
+            array[i]=array[i-1];
+
+        }
+        array[index]=element;
+        size++;
+    }
+
+    /**
+     * 打印顺序表的tostring重写方法
+     * @return
+     */
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder=new StringBuilder();
+        for(int i=0;i<size;i++){
+            stringBuilder.append(array[i]).append(" ");
+
+        }return stringBuilder.toString();
+    }
+
+    public E remove(int index){
+        E e=(E)array[index];
+        for(int i=index;i<size;i++){
+            array[i]=array[i+1];
+
+        }
+        size--;
+        return e;
+    }
+}
+
+```
+
+Main.java
+
+```java
+package com.test.collection;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> list=new ArrayList<>();
+       for(int i=0;i<20;i++){
+           list.add(i,i);
+
+       }
+        System.out.println(list);
+       list.remove(8);
+        System.out.println(list);
+    }
+}
+
+```
+

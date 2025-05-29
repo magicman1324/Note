@@ -816,6 +816,7 @@ public class Main {
         list.remove(0);
         list.remove(0);
         System.out.println(list.isEmpty());
+<<<<<<< HEAD
     }
 }
 
@@ -943,6 +944,8 @@ public class Main {
         list.remove(0);
         System.out.println(list);
 //        System.out.println(list.isEmpty());
+=======
+>>>>>>> 4d9d719712ea4661470284d91e1d358584b38042
     }
 }
 

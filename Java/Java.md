@@ -759,6 +759,12 @@ public class ArrayList<E> {
         }return stringBuilder.toString();
     }
 
+    /**
+     * 顺序表的删除操作
+     * @param index
+     * @return   删除的元素
+     */
+    @SuppressWarnings("unchecked")
     public E remove(int index){
         E e=(E)array[index];
         for(int i=index;i<size;i++){
@@ -768,6 +774,27 @@ public class ArrayList<E> {
         size--;
         return e;
     }
+
+    /**
+     * 顺序表的查找操作
+     * @param index
+     * @return 查找的元素
+     */
+    @SuppressWarnings("unchecked")
+    public E get(int index){
+        if(index<0||index>size){
+            throw new IndexOutOfBoundsException("查询位置不合法，范围是0~"+index);
+        }
+        return (E) array[index];
+    }
+
+    /**
+     * 判断是否为空
+     * @return
+     */
+    public boolean isEmpty(){
+        return size==0;
+    }
 }
 
 ```
@@ -776,17 +803,146 @@ Main.java
 
 ```java
 package com.test.collection;
-
+import com.test.collection.ArrayList;
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> list=new ArrayList<>();
-       for(int i=0;i<20;i++){
-           list.add(i,i);
+        ArrayList<String> list =new ArrayList<>();
+        list.add("AAA",0);
+        list.add("BBB",1);
+        list.add("CCC",2);
+        System.out.println(list.get(2));
+        System.out.println(list);
+        list.remove(0);
+        list.remove(0);
+        list.remove(0);
+        System.out.println(list.isEmpty());
+    }
+}
 
-       }
+```
+
+# 线性表
+
+LinkedList.java
+
+```java
+package com.test.collection;
+
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
+
+/**
+ * 线性表的类定义
+ * @param <E>
+ */
+public class LinkedList<E> {
+    //头节点不带元素，首元节点
+    private  Node<E>head=new Node<>(null);
+    private  int size;
+
+    private static class Node<E>{
+        E element;
+        Node<E> next;
+
+        public Node(E element){
+            this.element=element;
+        }
+
+    }
+
+    /**
+     * 线性表的添加
+     * @param element
+     * @param index
+     */
+    public  void add(E element,int index){
+        if(index<0||index>size){
+            throw new IndexOutOfBoundsException("添加位置不合法，范围应在0~"+size);
+        }
+        Node<E>prev=head;
+        for(int i=0;i<index;i++){
+            prev= prev.next;
+        }
+        Node<E> node=new Node<>(element);
+        node.next=prev.next;
+        prev.next=node;
+        size++;
+    }
+
+    /**
+     * 线性表的打印 重写toString
+     * @return
+     */
+    public String toString(){
+        StringBuilder stringBuilder=new StringBuilder();
+        Node<E> node=head.next;
+        while(node!=null){
+            stringBuilder.append(node.element).append("->");
+            node=node.next;
+        }
+        stringBuilder.append("null");
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 线性表的删除
+     * @param index
+     * @return
+     */
+    public E remove(int index){
+        if(index<0||index>size){
+            throw new IndexOutOfBoundsException("删除位置不合法，范围0~"+size);
+        }
+
+        Node<E>prev=head;
+        while(index-->0){
+            prev=prev.next;
+        }
+        Node<E>node;
+        node=prev;
+        prev=prev.next.next;
+        node.next=prev;
+        size--;
+        return node.element;
+    }
+
+    /**
+     * 线性表的查找
+     * @param index
+     * @return
+     */
+    public E get(int index){
+        if(index<0||index>size){
+            throw new IndexOutOfBoundsException("查找位置不合法，范围0~"+size);
+        }
+        Node<E>prev=head;
+        //查找和删除不同，直接index遍历到该位置就行，不需要停在前一个位置
+        while(index-->=0){
+            prev=prev.next;
+        }
+        Node<E>node=new Node<>(prev.element);
+        node=prev;
+        return node.element;
+    }
+
+}
+```
+
+Main.java
+
+```java
+package com.test.collection;
+import com.test.collection.ArrayList;
+public class Main {
+    public static void main(String[] args) {
+        LinkedList<String> list =new LinkedList<>();
+        list.add("AAA",0);
+        list.add("BBB",1);
+        list.add("CCC",2);
+        System.out.println(list.get(2));
         System.out.println(list);
-       list.remove(8);
+        list.remove(0);
         System.out.println(list);
+//        System.out.println(list.isEmpty());
     }
 }
 

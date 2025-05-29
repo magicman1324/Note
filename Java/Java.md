@@ -710,7 +710,7 @@ public abstract class AbstractStack <E> {
 
 ```
 
-# 顺序表
+## 顺序表
 
 Arraylist.java
 
@@ -816,12 +816,13 @@ public class Main {
         list.remove(0);
         list.remove(0);
         System.out.println(list.isEmpty());
+<<<<<<< HEAD
     }
 }
 
 ```
 
-# 线性表
+## 线性表
 
 LinkedList.java
 
@@ -943,6 +944,69 @@ public class Main {
         list.remove(0);
         System.out.println(list);
 //        System.out.println(list.isEmpty());
+=======
+>>>>>>> 4d9d719712ea4661470284d91e1d358584b38042
+    }
+}
+
+```
+
+## 栈
+
+LinkedStack.java
+
+```java
+package com.test.collection;
+
+import java.util.NoSuchElementException;
+
+public class LinkedStack <E>{
+
+    private Node<E> head=new Node<>(null);
+
+    private class Node<E>{
+        E element;
+        Node<E> next;
+
+        public Node(E element){
+            this.element=element;
+        }
+    }
+
+    public void push(E element){
+        Node<E> node=new Node<>(element);
+        node.next=head.next;
+        head.next=node;
+    }
+
+    public E pop(){
+        if(head.next==null){
+            throw new NoSuchElementException("栈为空");
+        }
+        E e =head.next.element;
+        head.next=head.next.next;
+        return e;
+    }
+}
+
+```
+
+Main.java
+
+```java
+package com.test.collection;
+import com.test.collection.ArrayList;
+public class Main {
+    public static void main(String[] args) {
+        LinkedStack<String> list =new LinkedStack<>();
+        list.push("A");
+        list.push("B");
+        list.push("C");
+        list.push("D");
+        System.out.println(list.pop());
+        System.out.println(list.pop());
+        System.out.println(list.pop());
+        System.out.println(list.pop());
     }
 }
 

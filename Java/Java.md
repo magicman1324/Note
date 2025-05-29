@@ -759,6 +759,12 @@ public class ArrayList<E> {
         }return stringBuilder.toString();
     }
 
+    /**
+     * 顺序表的删除操作
+     * @param index
+     * @return   删除的元素
+     */
+    @SuppressWarnings("unchecked")
     public E remove(int index){
         E e=(E)array[index];
         for(int i=index;i<size;i++){
@@ -768,6 +774,27 @@ public class ArrayList<E> {
         size--;
         return e;
     }
+
+    /**
+     * 顺序表的查找操作
+     * @param index
+     * @return 查找的元素
+     */
+    @SuppressWarnings("unchecked")
+    public E get(int index){
+        if(index<0||index>size){
+            throw new IndexOutOfBoundsException("查询位置不合法，范围是0~"+index);
+        }
+        return (E) array[index];
+    }
+
+    /**
+     * 判断是否为空
+     * @return
+     */
+    public boolean isEmpty(){
+        return size==0;
+    }
 }
 
 ```
@@ -776,17 +803,19 @@ Main.java
 
 ```java
 package com.test.collection;
-
+import com.test.collection.ArrayList;
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> list=new ArrayList<>();
-       for(int i=0;i<20;i++){
-           list.add(i,i);
-
-       }
+        ArrayList<String> list =new ArrayList<>();
+        list.add("AAA",0);
+        list.add("BBB",1);
+        list.add("CCC",2);
+        System.out.println(list.get(2));
         System.out.println(list);
-       list.remove(8);
-        System.out.println(list);
+        list.remove(0);
+        list.remove(0);
+        list.remove(0);
+        System.out.println(list.isEmpty());
     }
 }
 

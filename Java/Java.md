@@ -947,6 +947,7 @@ public class Main {
 =======
 >>>>>>> 4d9d719712ea4661470284d91e1d358584b38042
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 }
 
@@ -1010,6 +1011,8 @@ public class Main {
         System.out.println(list.pop());
 =======
 >>>>>>> 98d5f4fb5674008fa3064db83a4d0021d4db00fd
+=======
+>>>>>>> 517d7d0da682e2a47285dac92ba5e9928ef89e35
     }
 }
 

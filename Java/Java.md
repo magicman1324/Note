@@ -946,6 +946,7 @@ public class Main {
 //        System.out.println(list.isEmpty());
 =======
 >>>>>>> 4d9d719712ea4661470284d91e1d358584b38042
+<<<<<<< HEAD
     }
 }
 
@@ -1007,6 +1008,8 @@ public class Main {
         System.out.println(list.pop());
         System.out.println(list.pop());
         System.out.println(list.pop());
+=======
+>>>>>>> 98d5f4fb5674008fa3064db83a4d0021d4db00fd
     }
 }
 

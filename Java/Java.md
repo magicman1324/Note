@@ -1018,3 +1018,79 @@ public class Main {
 
 ```
 
+队列
+
+LinkedQueue.java
+
+```java
+package com.test.collection;
+
+import java.util.NoSuchElementException;
+
+public class LinkedQueue<E> {
+    private Node<E> head=new Node<>(null);
+
+    private class Node<E>{
+        E element;
+        Node<E> next;
+
+        public Node(E element){
+            this.element=element;
+        }
+    }
+
+    public void offer(E element){
+        Node<E>tail=head;
+        while(tail.next!=null){
+            tail=tail.next;
+        }
+        Node<E> offering=new Node<>(element);
+        offering.next=tail.next;
+        tail.next=offering;
+        tail=offering;
+    }
+
+    public E poll(){
+        if(head.next==null){
+            throw new NoSuchElementException("队列为空");
+        }
+        E e=head.next.element;
+        head.next=head.next.next;
+        return e;
+    }
+
+    public E peek(){
+        if(head.next==null){
+            throw new NoSuchElementException("队列为空");
+        }
+        E e=head.next.element;
+        return e;
+    }
+}
+
+```
+
+Main.java
+
+```java
+package com.test.collection;
+import com.test.collection.ArrayList;
+public class Main {
+    public static void main(String[] args) {
+        LinkedQueue<String> queue=new LinkedQueue<>();
+        queue.offer("A");
+        queue.offer("B");
+        queue.offer("C");
+        queue.offer("D");
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+        System.out.println(queue.peek());
+        System.out.println(queue.poll());
+
+
+    }
+}
+
+```
+
